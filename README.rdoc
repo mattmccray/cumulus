@@ -18,15 +18,12 @@ Here's the high-level (brain dump):
 * You custom meta data tags in a content objects
 * You can specify 'prototype' content objects in a collection with a _proto folder in the collection
 
-Oh, and in case you're curious, it's pronounced 'Lo-see'. It's latin:
-
-> loci: (pl.) 
-> > Passages in literary works. 
 
 == REQUIREMENTS:
 
 * `hpricot` >= 0.6
 * `liquid` >= 1.9
+* `rake` >= 0.8
 
 == INSTALL:
 
