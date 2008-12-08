@@ -4,13 +4,14 @@ require File.dirname(__FILE__) + '/lib/loci'
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
 $hoe = Hoe.new('loci', Loci::VERSION) do |p|
-  p.developer('FIXME full name', 'FIXME email')
+  p.developer('M@ McCray', 'darthapo@gmail.com')
   p.changes              = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.post_install_message = 'PostInstall.txt' # TODO remove if post-install message not required
   p.rubyforge_name       = p.name # TODO this is default value
-  # p.extra_deps         = [
-  #   ['activesupport','>= 2.0.2'],
-  # ]
+  p.extra_deps         = [
+    ['hpricot','>= 0.6'],
+    ['liquid','>= 1.9'],
+  ]
   p.extra_dev_deps = [
     ['newgem', ">= #{::Newgem::VERSION}"]
   ]

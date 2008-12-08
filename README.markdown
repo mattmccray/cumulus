@@ -1,32 +1,42 @@
-= loci
+# `loci`
 
-* FIX (url)
+http://github.com/darthapo/loci
 
-== DESCRIPTION:
+## DESCRIPTION:
 
-FIX (describe your package)
+**Non Functional / Still in Planning Stage**
 
-== FEATURES/PROBLEMS:
+Here's the high-level (brain dump):
 
-* FIX (list of features or problems)
+* Site content is organized in collections
+* Collections are serialized
+* Each have support for next, previous, first, last, etc
+* The content files are HTML
+* Templates are object based (each content type can be rendered with their own templates)
+* Templates are HTML with interspersed Liquid markup
+* All meta data is described using HTML meta tags
+* You custom meta data tags in a content objects
+* You can specify 'prototype' content objects in a collection with a _proto folder in the collection
 
-== SYNOPSIS:
+Oh, and in case you're curious, it's pronounced 'Lo-see'. It's latin:
 
-  FIX (code sample of usage)
+> loci: (pl.) 
+> > Passages in literary works. 
 
-== REQUIREMENTS:
+## REQUIREMENTS:
 
-* FIX (list of requirements)
+* `hpricot` >= 0.6
+* `liquid` >= 1.9
 
-== INSTALL:
+## INSTALL:
 
-* FIX (sudo gem install, anything else)
+    sudo gem install darthapo-loci --source=http://gems.github.com
 
-== LICENSE:
+## LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2008 FIXME full name
+Copyright (c) 2008 M@ McCray.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
