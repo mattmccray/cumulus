@@ -1,8 +1,8 @@
-# `loci`
+= `loci`
 
 http://github.com/darthapo/loci
 
-## DESCRIPTION:
+== DESCRIPTION:
 
 **Non Functional / Still in Planning Stage**
 
@@ -23,16 +23,16 @@ Oh, and in case you're curious, it's pronounced 'Lo-see'. It's latin:
 > loci: (pl.) 
 > > Passages in literary works. 
 
-## REQUIREMENTS:
+== REQUIREMENTS:
 
 * `hpricot` >= 0.6
 * `liquid` >= 1.9
 
-## INSTALL:
+== INSTALL:
 
     sudo gem install darthapo-loci --source=http://gems.github.com
 
-## LICENSE:
+== LICENSE:
 
 (The MIT License)
 

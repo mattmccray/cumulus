@@ -1,0 +1,22 @@
+$: << '../../../lib/'
+require 'pp'
+require 'loci'
+
+desc "This is just for testing..."
+task :default do
+  scanner = Loci::Scanner.new(File.dirname(__FILE__))
+  scanner.sweep
+
+#  pp Loci::Resources.all
+
+  c = Loci::Resources.all.find(:guid=>'GUID_HERE')
+  
+  pp c
+  
+  puts 
+  puts "- - - -- - - - - -- - - - - - - - -"
+  puts 
+  
+  pp c.attachments
+  
+end

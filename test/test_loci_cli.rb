@@ -1,15 +1,15 @@
 require File.join(File.dirname(__FILE__), "test_helper.rb")
-require 'loci/cli'
+#require 'loci/cli'
 
-class TestLociCli < Test::Unit::TestCase
-  def setup
-    @stdout_io = StringIO.new
-    Loci::CLI.execute(@stdout_io, [])
-    @stdout_io.rewind
-    @stdout = @stdout_io.read
-  end
-  
-  def test_not_print_default_output
-    assert_no_match(/To update this executable/, @stdout)
-  end
-end
+# class TestLociCli < Test::Unit::TestCase
+#   def setup
+#     @stdout_io = StringIO.new
+#     Loci::CLI.execute(@stdout_io, [])
+#     @stdout_io.rewind
+#     @stdout = @stdout_io.read
+#   end
+#   
+#   def test_not_print_default_output
+#     assert_no_match(/To update this executable/, @stdout)
+#   end
+# end

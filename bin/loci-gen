@@ -6,6 +6,6 @@
 require File.expand_path(File.dirname(__FILE__) + "/../lib/loci")
 
 require "loci/cli"
-CLI_MODE = :build
+CLI_MODE = :gen
 
 Loci::CLI.execute(STDOUT, ARGV)

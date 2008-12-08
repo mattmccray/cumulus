@@ -1,7 +1,2 @@
 
-For more information on loci, see http://loci.rubyforge.org
-
-NOTE: Change this information in PostInstall.txt 
-You can also delete it if you don't want it.
-
-
+For more information on loci, see http://github.com/darthapo/loci/wikis
