@@ -4,12 +4,17 @@ require 'cumulus'
 
 desc "This is just for testing..."
 task :default do
+  
   scanner = Cumulus::Scanner.new(File.dirname(__FILE__))
   scanner.sweep
-
-  pp Cumulus::Resources.all
-
-  # c = Cumulus::Resources.all.find(:guid=>'GUID_HERE')
+  
+  builder = Cumulus::Builder.new( :dry_run=>true, :verbose=>true )
+  
+  builder.execute
+  
+  #pp Cumulus::Resources.all
+  
+  # c = Cumulus::Resources.collections(:guid=>'GUID_HERE')
   # 
   # pp c
   # 
@@ -18,5 +23,5 @@ task :default do
   # puts 
   # 
   # pp c.attachments
-  
+  # 
 end

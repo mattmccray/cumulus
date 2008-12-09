@@ -9,28 +9,27 @@ module Cumulus::Resources
     end
     
     # Only content attachments
-    def attachments(filter={})
-      filter.merge! :content_type=>:attachment
-      puts filter.inspect
-      all.find(filter)
+    def attachments(*args)
+      filter = args.extract_options!.merge! :content_type=>:attachment
+      all.find((args.first || :all), filter)
     end
     
     # Only content objects
-    def collections(filter={})
-      filter.merge! :content_type=>:content
-      all.find(filter)
+    def collections(*args)
+      filter = args.extract_options!.merge! :content_type=>:content
+      all.find((args.first || :all), filter)
     end
     
     # Only templates
-    def templates(filter={})
-      filter.merge! :content_type=>:template
-      all.find(filter)
+    def templates(*args)
+      filter = args.extract_options!.merge! :content_type=>:template
+      all.find((args.first || :all), filter)
     end
 
     # Only templates
-    def layouts(filter={})
-      filter.merge! :content_type=>:layout
-      all.find(filter)
+    def layouts(*args)
+      filter = args.extract_options!.merge! :content_type=>:layout
+      all.find((args.first || :all), filter)
     end
     
     def clear

@@ -22,14 +22,28 @@ slug:
   
 class BaseResource
 
-  attr_reader :slug, :content_path, :collection_type, :content_type
+  attr_reader :slug, :content_path, :collection_type, :content_type, :source_path
 
   # def guid
   #   @guid ||= `uuidgen` # Probably need a more portable solution than this...
   # end
   
+  def initialize(fullpath)
+    @source_path = fullpath
+    @slug = File.basename(fullpath)
+  end
+  
   def metadata
     @meta ||= {}
+  end
+  
+  def includes
+    @meta.fetch(:include, [])
+  end
+  
+  def output_path
+    #filename = File.extname(@slug).empty? ? "#{@slug}.html" : @slug
+    File.join(Cumulus.output_dir, @collection_type, @slug, 'index.html')
   end
   
   def method_missing(name, *args)
@@ -39,6 +53,23 @@ class BaseResource
   def <=>( other )
     return unless other.kind_of? ::Cumulus::Resources::BaseResource
     self.content_path <=> other.content_path
+  end
+  
+  def to_liquid
+    data = @meta.merge({
+      :slug => @slug,
+      :content_path => @content_path,
+      :collection_type => @collection_type,
+      :content_type => @content_type
+    }).stringify_keys
+  end
+  
+  def [](key)
+    if self.respond_to? key.to_sym
+      self.send(key.to_sym)
+    else
+      metadata[name]
+    end
   end
   
   # def dirty?

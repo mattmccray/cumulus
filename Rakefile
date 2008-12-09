@@ -16,6 +16,7 @@ $hoe = Hoe.new('cumulus', Cumulus::VERSION) do |p|
   p.extra_dev_deps = [
     ['newgem', ">= #{::Newgem::VERSION}"],
     ['shoulda', ">= 2.0"]
+    ['activesupport']
   ]
   
   p.clean_globs |= %w[**/.DS_Store tmp *.log]

@@ -4,9 +4,12 @@
     <meta name="published-on" content="12/7/2008 4:09 AM CST" />
     <meta name="keywords" content="news" />
     <meta name="summary" content="Hello world!" />
+    <meta name="include" content="articles/about">
   </head>
   <body>
     <p>I'm the post itself. Nice, huh?</p>
     <p>I can reference images, and what nots, from this directory without needing to generate a path.</p>
+    <hr/>
+    {{ about.title }} -> {{ about.content_path }}
   </body>
 </html>

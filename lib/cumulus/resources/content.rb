@@ -6,26 +6,23 @@ module Cumulus::Resources
 # and attachments
 class Content < BaseResource
   
-  attr_reader :content_dir
   
   def initialize(full_path, content_path)
+    super(full_path)
     @content_type = :content
     @content_path = content_path
     @collection_type = content_path.split('/').first
-    @slug = content_path.split('/').last
-    @content_dir = full_path
-    
     parse_file
   end
   
   def attachments
-    Cumulus::Resources.attachments(:in_collection=>content_path)
+    Cumulus::Resources.attachments( :in_collection=>content_path )
   end
   
 protected
 
   def parse_file(filename='index.html')
-    doc = Hpricot(open(File.join(content_dir, filename)))
+    doc = Hpricot(open(File.join(source_path, filename)))
     metadata[:title] = doc.at("title").inner_html
     doc.search("//title").remove
 
@@ -34,7 +31,13 @@ protected
 
     doc.search("//meta").each do |meta_tag|
       name = meta_tag[:name].gsub(' ', '_').gsub('-', '_').downcase.to_sym
-      metadata[ name ] = meta_tag[:content]
+      if name == :include
+        metadata[name] = [] unless metadata.has_key? name
+        metadata[name] << meta_tag[:content]
+      else
+        metadata[name] = meta_tag[:content]
+      end
+      
     end
     doc.search("//meta").remove
 
