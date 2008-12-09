@@ -27,7 +27,8 @@ Here's the high-level (brain dump):
 
 == INSTALL:
 
-    sudo gem install darthapo-loci --source=http://gems.github.com
+    gem sources -a http://gems.github.com
+    sudo gem install darthapo-loci
 
 == LICENSE:
 

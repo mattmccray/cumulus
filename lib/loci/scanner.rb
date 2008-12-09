@@ -49,8 +49,8 @@ private
   def sweep_layouts
     layouts_path = File.join(base, 'skin', 'templates', 'layouts')
     Dir[File.join(layouts_path, '*')].each do |fullpath|
-      template = Loci::Resources::Template.new(fullpath)
-      resources.all << template
+      layout = Loci::Resources::Layout.new(fullpath)
+      resources.all << layout
     end
   end
   
