@@ -1,10 +1,10 @@
 require File.join(File.dirname(__FILE__), "test_helper.rb")
-#require 'loci/cli'
+#require 'cumulus/cli'
 
-# class TestLociCli < Test::Unit::TestCase
+# class TestCumulusCli < Test::Unit::TestCase
 #   def setup
 #     @stdout_io = StringIO.new
-#     Loci::CLI.execute(@stdout_io, [])
+#     Cumulus::CLI.execute(@stdout_io, [])
 #     @stdout_io.rewind
 #     @stdout = @stdout_io.read
 #   end

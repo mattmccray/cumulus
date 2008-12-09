@@ -1,4 +1,4 @@
-module Loci
+module Cumulus
 
 # A rudimentary "database" for holding resource objects and finding them.
 # The database is held in a Ruby hash keyed by the collection/guid

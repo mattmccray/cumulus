@@ -1,6 +1,6 @@
 require 'hpricot'
 
-module Loci::Resources
+module Cumulus::Resources
 
 # Content objects reside within collections, they include all meta data
 # and attachments
@@ -19,7 +19,7 @@ class Content < BaseResource
   end
   
   def attachments
-    Loci::Resources.attachments(:in_collection=>content_path)
+    Cumulus::Resources.attachments(:in_collection=>content_path)
   end
   
 protected

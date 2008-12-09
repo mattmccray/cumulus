@@ -1,4 +1,4 @@
-module Loci::Resources
+module Cumulus::Resources
 
 # A template is any .html file that contains Liquid markup 
 # for use in wrapping/rendering content objects

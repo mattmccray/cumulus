@@ -1,4 +1,4 @@
-module Loci::Resources
+module Cumulus::Resources
 
 # A attachment is any file that's not the index.html in a 
 # content object folder

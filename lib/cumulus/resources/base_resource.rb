@@ -1,4 +1,4 @@
-module Loci::Resources
+module Cumulus::Resources
 
 =begin
 
@@ -37,7 +37,7 @@ class BaseResource
   end
   
   def <=>( other )
-    return unless other.kind_of? ::Loci::Resources::BaseResource
+    return unless other.kind_of? ::Cumulus::Resources::BaseResource
     self.content_path <=> other.content_path
   end
   

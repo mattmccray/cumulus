@@ -1,11 +1,11 @@
-require 'loci/hash_db'
+require 'cumulus/hash_db'
 
-module Loci::Resources
+module Cumulus::Resources
   class << self
     
     # Every source file: Content, Attachment, (¿Template?)
     def all
-      @all ||= Loci::HashDB.new
+      @all ||= Cumulus::HashDB.new
     end
     
     # Only content attachments
@@ -40,8 +40,8 @@ module Loci::Resources
   end
 end
 
-require 'loci/resources/base_resource'
-require 'loci/resources/attachment'
-require 'loci/resources/content'
-require 'loci/resources/template'
-require 'loci/resources/layout'
+require 'cumulus/resources/base_resource'
+require 'cumulus/resources/attachment'
+require 'cumulus/resources/content'
+require 'cumulus/resources/template'
+require 'cumulus/resources/layout'

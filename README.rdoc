@@ -1,6 +1,6 @@
-= `loci`
+= Cumulus
 
-http://github.com/darthapo/loci
+http://github.com/darthapo/cumulus
 
 == DESCRIPTION:
 
@@ -21,14 +21,14 @@ Here's the high-level (brain dump):
 
 == REQUIREMENTS:
 
-* `hpricot` >= 0.6
-* `liquid` >= 1.9
-* `rake` >= 0.8
+* hpricot >= 0.6
+* liquid >= 1.9
+* rake >= 0.8
 
 == INSTALL:
 
     gem sources -a http://gems.github.com
-    sudo gem install darthapo-loci
+    sudo gem install darthapo-cumulus
 
 == LICENSE:
 

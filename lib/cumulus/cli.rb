@@ -2,10 +2,10 @@ require 'support/trollop'
 
 # I'm thinking Trollop!
 opts = Trollop::options do
-  version "loci #{Loci::VERSION} (c) 2008 M@ McCray"
+  version "cumulus #{Cumulus::VERSION} (c) 2008 M@ McCray"
   banner <<-EOS
 Usage:
-       loci#{" <path>" if CLI_MODE == :gen} [options]
+       cumulus#{" <path>" if CLI_MODE == :gen} [options]
 where [options] are:
 EOS
 
@@ -25,7 +25,7 @@ end
 # Trollop::die :volume, "must be non-negative" if opts[:volume] < 0
 # Trollop::die :file, "must exist" unless File.exist?(opts[:file]) if opts[:file]
 
-# module Loci
+# module Cumulus
 #   class CLI
 #     def self.execute(stdout, arguments=[])
 # 

@@ -1,6 +1,6 @@
 require 'fileutils'
 
-module Loci
+module Cumulus
 
 class Scanner
   attr_reader :base, :content_path
@@ -25,7 +25,7 @@ private
     Dir[File.join(content_path, '*', '*')].each do |fullpath|
       object_path = fullpath.gsub( "#{ content_path }/", '')
       collection = object_path.split('/').first
-      object = Loci::Resources::Content.new(fullpath, object_path)
+      object = Cumulus::Resources::Content.new(fullpath, object_path)
       resources.all << object
       sweep_attachments fullpath, object
     end
@@ -34,14 +34,14 @@ private
   def sweep_attachments(from_path, content_object)
     Dir[File.join(from_path, '*')].each do |filename|
       next if File.basename(filename) == 'index.html'
-      resources.all << Loci::Resources::Attachment.new(filename, content_object)
+      resources.all << Cumulus::Resources::Attachment.new(filename, content_object)
     end
   end
 
   def sweep_templates
     templates_path = File.join(base, 'skin', 'templates', 'objects')
     Dir[File.join(templates_path, '*')].each do |fullpath|
-      template = Loci::Resources::Template.new(fullpath)
+      template = Cumulus::Resources::Template.new(fullpath)
       resources.all << template
     end
   end
@@ -49,13 +49,13 @@ private
   def sweep_layouts
     layouts_path = File.join(base, 'skin', 'templates', 'layouts')
     Dir[File.join(layouts_path, '*')].each do |fullpath|
-      layout = Loci::Resources::Layout.new(fullpath)
+      layout = Cumulus::Resources::Layout.new(fullpath)
       resources.all << layout
     end
   end
   
   def resources
-    Loci::Resources
+    Cumulus::Resources
   end
 
 end

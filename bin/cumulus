@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+#
+#  Created on 2008-12-8.
+#  Copyright (c) 2008 M@ McCray. All rights reserved.
+
+require File.expand_path(File.dirname(__FILE__) + "/../lib/cumulus")
+
+require "cumulus/cli"
+CLI_MODE = :build
+
+Cumulus::CLI.execute(STDOUT, ARGV)

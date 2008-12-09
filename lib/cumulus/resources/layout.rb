@@ -1,4 +1,4 @@
-module Loci::Resources
+module Cumulus::Resources
 
 =begin
 

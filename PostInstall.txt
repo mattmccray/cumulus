@@ -1,2 +1,2 @@
 
-For more information on loci, see http://github.com/darthapo/loci/wikis
+For more information on cumulus, see http://github.com/darthapo/cumulus/wikis
