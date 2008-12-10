@@ -16,7 +16,7 @@ class Content < BaseResource
   end
   
   def attachments
-    Cumulus::Resources.attachments( :in_collection=>content_path )
+    Cumulus::Resources.attachments( :content_path=>content_path )
   end
   
 protected

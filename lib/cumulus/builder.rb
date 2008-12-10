@@ -1,4 +1,11 @@
 # The builder class takes the resources and generates the output
+
+require 'liquid/module_ex'
+
+class Hash
+
+end
+
 module Cumulus
 
 class Builder
@@ -13,19 +20,20 @@ class Builder
   end
   
   def execute
+    collection_types = {}
+    renderer = Cumulus::Renderer.new({})
+    
     Resources.collections.each do |content|
+      #content = content.clone
       # Render content
       output = nil
-      source = render(content, '')
-      template = template_for( content )
-      
-      temporarily_replace content, source do
-        output = render(template, content)
-      end
+      renderer.render_body(content)
+      template = renderer.template_for( content )
+      output = renderer.render(template, content, {'_content' => content})
       
       # Render layout around content
-      layout = layout_for(template)
-      output = render(layout, output)
+      layout = renderer.layout_for(template)
+      output = renderer.render(layout, output)
       
       # Write to file
       write_file content.output_path, output
@@ -34,30 +42,25 @@ class Builder
       content.attachments.each do |attachment|
         copy_file attachment.source_path, attachment.output_path
       end
+      
+      collection_types[content.collection_type] ||= []
+      collection_types[content.collection_type] << content
+    end
+    
+    collection_types.each do |coll, contents|
+      # Render the collection indices...
+      contents.map {|c| renderer.render_body(c) }
+      template = renderer.template_for( contents.first, 'index' )
+      source = renderer.render(template, '', {coll => contents, '_contents' => contents})
+      
+      layout = renderer.layout_for(template)
+      output = renderer.render(layout, source)
+      
+      write_file File.join(Cumulus.output_dir, coll, 'index.html'), output
     end
   end
 
 private
-
-  def template_for(content)
-    @templates ||= Hash.new {|h,k| 
-      h[k] = Resources.templates(:first, :slug => "#{ k.singularize }.html")
-    }
-    @templates[content.collection_type]
-  end
-
-  def layout_for(template)
-    @layouts ||= Hash.new {|h,k| 
-      h[k] = Resources.layouts(:first, :slug => "#{ k }.html")
-    }
-    @layouts[ template.metadata.fetch('layout', 'main') ]
-  end
-  
-  def render(template, content)
-    context = context_for(template, content)
-#    pp context
-    parser_for(template).render(context)
-  end
   
   def temporarily_replace(content, value, field=:content)
     old = content.metadata[field]
@@ -65,46 +68,6 @@ private
     yield
     content.metadata[field] = old
   end
-  
-  
-  def context_for(template, content)
-    context = {
-      'template' => template
-    }
-    if content.is_a? String
-      context.merge!({
-        'content' => content,
-        'content_keys' => []
-      })
-    else
-      context.merge!({
-        content.collection_type.singularize => content,
-        'content_keys' => content.to_liquid.keys
-      })
-      process_includes(context, content)
-    end
-    process_includes(context, template)
-    context
-  end
-  
-  def process_includes(ctx, source)
-    source.includes.each do |content_path|
-      included_content = Resources.collections( :first, :content_path=>content_path )
-      unless included_content.nil?
-        puts ":::> Adding to ctx [#{included_content.slug}]"
-        ctx[included_content.slug.to_s] = included_content
-      end
-    end
-  end
-
-  def parser_for(template)
-    @parsers ||= Hash.new {|h,k| 
-      h[k] = Liquid::Template.parse(k.content) 
-    }
-    @parsers[template]
-  end
-  
-
   # Use logging?
   def info(msg, alt=nil)
     if options[:verbose]

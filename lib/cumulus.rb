@@ -16,7 +16,7 @@ module Cumulus
     attr_accessor_with_default :dry_run,    false
     
     def config(&block)
-      self.instance_eval &block
+      self.instance_eval( &block )
     end
     
   end
@@ -26,3 +26,4 @@ end
 require 'cumulus/resources'
 require 'cumulus/scanner'
 require 'cumulus/builder'
+require 'cumulus/renderer'

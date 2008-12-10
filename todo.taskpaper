@@ -1,0 +1,19 @@
+Todo:
+- change :content to :body
+- remove root html tag from content html
+- allow multiple 'parts' ('sections?') per html by using tag name
+- Add render:mode filter to Liquid
+- Add link_to filter
+
+Ideas:
+
+Notes:
+- Disallowed slugs
+	- _collection
+	- slug
+	- body
+	- content_path
+	- collection_type
+	
+- Disallowed collectionsgit
+	- _default

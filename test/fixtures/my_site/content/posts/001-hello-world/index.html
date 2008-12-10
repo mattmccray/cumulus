@@ -1,15 +1,20 @@
-<html>
-  <head>
-    <title>Hello World!</title>
-    <meta name="published-on" content="12/7/2008 4:09 AM CST" />
-    <meta name="keywords" content="news" />
-    <meta name="summary" content="Hello world!" />
-    <meta name="include" content="articles/about">
-  </head>
-  <body>
-    <p>I'm the post itself. Nice, huh?</p>
-    <p>I can reference images, and what nots, from this directory without needing to generate a path.</p>
-    <hr/>
-    {{ about.title }} -> {{ about.content_path }}
-  </body>
-</html>
+<head>
+  <title>Hello World!</title>
+  <meta name="published-on" content="12/7/2008 4:09 AM CST" />
+  <meta name="keywords" content="news" />
+  <meta name="include" content="articles/about">
+</head>
+<summary>
+  Where I give a greeting to the world at large.
+</summary>
+<body>
+  <p>I'm the post itself. Nice, huh?</p>
+  <p>I can reference images, and what nots, from this directory without needing to generate a path.</p>
+  <hr/>
+  {{ articles.about.title }} -> {{ articles.about.content_path }}
+  <strong>:{{ articles.size }}</strong>
+  <hr/>
+  {% for post in articles._collection %}
+  <li><a href="/{{ post.content_path }}">{{ post.title }}</a></li>
+  {% endfor %}
+</body>

@@ -13,16 +13,23 @@
     </div>
     <div>
       
-<div class="article">
-  <h2>About</h2>
-  <div class="body">
+  <div class="content index">
     
-  <p>I'm the page itself. Nice, huh?</p>
+  <p>I'm the post itself. Nice, huh?</p>
   <p>I can reference images, and what nots, from this directory without needing to generate a path.</p>
-  <p><a href="test.rb">test.rb</a>
-</p>
+  <hr />
+  About -> articles/about
+  <strong>:2</strong>
+  <hr />
+  
+  <li><a href="/articles/about">About</a></li>
+  
+
+    
+    { { page | render:'summary' } }
   </div>
-</div>
+
+
     </div>
     <div>
       <!--??: { { 'footer' | render_object } } -->

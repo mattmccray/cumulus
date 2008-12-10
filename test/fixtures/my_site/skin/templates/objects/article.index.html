@@ -1,0 +1,9 @@
+<div class="articles">
+{% for page in articles %}
+  <div class="article summary">
+    {{ page.body }}
+    
+    { { page | render:'summary' } }
+  </div>
+{% endfor %}
+</div>

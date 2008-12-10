@@ -7,8 +7,8 @@ bin/cumulus
 bin/cumulus-gen
 cumulus.gemspec
 lib/cumulus.rb
+lib/cumulus/builder.rb
 lib/cumulus/cli.rb
-lib/cumulus/configuration.rb
 lib/cumulus/hash_db.rb
 lib/cumulus/resources.rb
 lib/cumulus/resources/attachment.rb
@@ -29,6 +29,9 @@ test/fixtures/my_site/config/site.yml
 test/fixtures/my_site/content/articles/about/index.html
 test/fixtures/my_site/content/articles/about/test.rb
 test/fixtures/my_site/content/posts/001-hello-world/index.html
+test/fixtures/my_site/output/articles/about/index.html
+test/fixtures/my_site/output/articles/about/test.rb
+test/fixtures/my_site/output/posts/001-hello-world/index.html
 test/fixtures/my_site/skin/styles/screen.css
 test/fixtures/my_site/skin/templates/layouts/home.html
 test/fixtures/my_site/skin/templates/layouts/main.html
@@ -36,6 +39,7 @@ test/fixtures/my_site/skin/templates/objects/article.html
 test/fixtures/my_site/skin/templates/objects/article.summary.html
 test/fixtures/my_site/skin/templates/objects/post.html
 test/fixtures/my_site/skin/templates/objects/post.summary.html
-test/test_cumulus.rb
-test/test_cumulus_cli.rb
 test/test_helper.rb
+test/unit/cumulus_cli_test.rb
+test/unit/cumulus_test.rb
+test/unit/hash_db_test.rb

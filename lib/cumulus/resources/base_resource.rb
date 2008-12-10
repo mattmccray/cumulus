@@ -38,7 +38,7 @@ class BaseResource
   end
   
   def includes
-    @meta.fetch(:include, [])
+    metadata.fetch(:include, [])
   end
   
   def output_path
@@ -47,7 +47,11 @@ class BaseResource
   end
   
   def method_missing(name, *args)
-    metadata[name]
+    if name.to_s.ends_with? '='
+      metadata[name.to_s[0..-2].to_sym] = args.first
+    else
+      metadata[name]
+    end
   end
   
   def <=>( other )
@@ -56,7 +60,7 @@ class BaseResource
   end
   
   def to_liquid
-    data = @meta.merge({
+    data = metadata.merge({
       :slug => @slug,
       :content_path => @content_path,
       :collection_type => @collection_type,

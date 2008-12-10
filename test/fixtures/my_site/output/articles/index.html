@@ -12,16 +12,18 @@
       <!--??: { { 'header' | render_object } } -->
     </div>
     <div>
-      
-<div class="article">
-  <h2>About</h2>
-  <div class="body">
+      <div class="articles">
+
+  <div class="article summary">
     
   <p>I'm the page itself. Nice, huh?</p>
   <p>I can reference images, and what nots, from this directory without needing to generate a path.</p>
   <p><a href="test.rb">test.rb</a>
 </p>
+    
+    { { page | render:'summary' } }
   </div>
+
 </div>
     </div>
     <div>

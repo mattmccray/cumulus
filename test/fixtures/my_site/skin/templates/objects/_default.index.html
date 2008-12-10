@@ -1,0 +1,7 @@
+{% for page in _contents %}
+  <div class="content index">
+    {{ page.body }}
+    
+    { { page | render:'summary' } }
+  </div>
+{% endfor %}

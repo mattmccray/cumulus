@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email = ["darthapo@gmail.com"]
   s.executables = ["cumulus", "cumulus-gen"]
   s.extra_rdoc_files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc"]
-  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "bin/cumulus", "bin/cumulus-gen", "cumulus.gemspec", "lib/cumulus.rb", "lib/cumulus/cli.rb", "lib/cumulus/configuration.rb", "lib/cumulus/hash_db.rb", "lib/cumulus/resources.rb", "lib/cumulus/resources/attachment.rb", "lib/cumulus/resources/base_resource.rb", "lib/cumulus/resources/content.rb", "lib/cumulus/resources/layout.rb", "lib/cumulus/resources/skin.rb", "lib/cumulus/resources/template.rb", "lib/cumulus/scanner.rb", "lib/support/trollop.rb", "script/console", "script/destroy", "script/generate", "test/fixtures/my_site/Rakefile", "test/fixtures/my_site/config/content.yml", "test/fixtures/my_site/config/publishing.yml", "test/fixtures/my_site/config/site.yml", "test/fixtures/my_site/content/articles/about/index.html", "test/fixtures/my_site/content/articles/about/test.rb", "test/fixtures/my_site/content/posts/001-hello-world/index.html", "test/fixtures/my_site/skin/styles/screen.css", "test/fixtures/my_site/skin/templates/layouts/home.html", "test/fixtures/my_site/skin/templates/layouts/main.html", "test/fixtures/my_site/skin/templates/objects/article.html", "test/fixtures/my_site/skin/templates/objects/article.summary.html", "test/fixtures/my_site/skin/templates/objects/post.html", "test/fixtures/my_site/skin/templates/objects/post.summary.html", "test/test_cumulus.rb", "test/test_cumulus_cli.rb", "test/test_helper.rb"]
+  s.files = ["History.txt", "Manifest.txt", "PostInstall.txt", "README.rdoc", "Rakefile", "bin/cumulus", "bin/cumulus-gen", "cumulus.gemspec", "lib/cumulus.rb", "lib/cumulus/builder.rb", "lib/cumulus/cli.rb", "lib/cumulus/hash_db.rb", "lib/cumulus/resources.rb", "lib/cumulus/resources/attachment.rb", "lib/cumulus/resources/base_resource.rb", "lib/cumulus/resources/content.rb", "lib/cumulus/resources/layout.rb", "lib/cumulus/resources/skin.rb", "lib/cumulus/resources/template.rb", "lib/cumulus/scanner.rb", "lib/support/trollop.rb", "script/console", "script/destroy", "script/generate", "test/fixtures/my_site/Rakefile", "test/fixtures/my_site/config/content.yml", "test/fixtures/my_site/config/publishing.yml", "test/fixtures/my_site/config/site.yml", "test/fixtures/my_site/content/articles/about/index.html", "test/fixtures/my_site/content/articles/about/test.rb", "test/fixtures/my_site/content/posts/001-hello-world/index.html", "test/fixtures/my_site/output/articles/about/index.html", "test/fixtures/my_site/output/articles/about/test.rb", "test/fixtures/my_site/output/posts/001-hello-world/index.html", "test/fixtures/my_site/skin/styles/screen.css", "test/fixtures/my_site/skin/templates/layouts/home.html", "test/fixtures/my_site/skin/templates/layouts/main.html", "test/fixtures/my_site/skin/templates/objects/article.html", "test/fixtures/my_site/skin/templates/objects/article.summary.html", "test/fixtures/my_site/skin/templates/objects/post.html", "test/fixtures/my_site/skin/templates/objects/post.summary.html", "test/test_helper.rb", "test/unit/cumulus_cli_test.rb", "test/unit/cumulus_test.rb", "test/unit/hash_db_test.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/darthapo/cumulus}
   s.post_install_message = %q{PostInstall.txt}
@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = %q{cumulus}
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{**Non Functional / Still in Planning Stage**  Here's the high-level (brain dump):  * Site content is organized in collections * Collections are serialized * Each have support for next, previous, first, last, etc * The content files are HTML * Templates are object based (each content type can be rendered with their own templates) * Templates are HTML with interspersed Liquid markup * All meta data is described using HTML meta tags * You custom meta data tags in a content objects * You can specify 'prototype' content objects in a collection with a _proto folder in the collection}
-  s.test_files = ["test/test_cumulus.rb", "test/test_cumulus_cli.rb", "test/test_helper.rb"]
+  s.test_files = ["test/unit/cumulus_cli_test.rb", "test/unit/cumulus_test.rb", "test/unit/hash_db_test.rb"]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rake>, [">= 0.8"])
       s.add_development_dependency(%q<newgem>, [">= 1.1.0"])
       s.add_development_dependency(%q<shoulda>, [">= 2.0"])
+      s.add_development_dependency(%q<activesupport>, [">= 0"])
       s.add_development_dependency(%q<hoe>, [">= 1.8.0"])
     else
       s.add_dependency(%q<hpricot>, [">= 0.6"])
@@ -39,6 +40,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rake>, [">= 0.8"])
       s.add_dependency(%q<newgem>, [">= 1.1.0"])
       s.add_dependency(%q<shoulda>, [">= 2.0"])
+      s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<hoe>, [">= 1.8.0"])
     end
   else
@@ -47,6 +49,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rake>, [">= 0.8"])
     s.add_dependency(%q<newgem>, [">= 1.1.0"])
     s.add_dependency(%q<shoulda>, [">= 2.0"])
+    s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<hoe>, [">= 1.8.0"])
   end
 end

@@ -1,5 +1,6 @@
-%w[rubygems rake rake/clean fileutils newgem rubigen].each { |f| require f }
+%w[rubygems rake rake/clean rake/testtask fileutils newgem rubigen shoulda/tasks].each { |f| require f }
 require File.dirname(__FILE__) + '/lib/cumulus'
+
 
 # Generate all the Rake tasks
 # Run 'rake -T' to see list of generated tasks (from gem root directory)
@@ -15,10 +16,10 @@ $hoe = Hoe.new('cumulus', Cumulus::VERSION) do |p|
   ]
   p.extra_dev_deps = [
     ['newgem', ">= #{::Newgem::VERSION}"],
-    ['shoulda', ">= 2.0"]
+    ['shoulda', ">= 2.0"],
     ['activesupport']
   ]
-  
+  p.test_globs = "test/**/*_test.rb"
   p.clean_globs |= %w[**/.DS_Store tmp *.log]
   path = (p.rubyforge_name == p.name) ? p.rubyforge_name : "\#{p.rubyforge_name}/\#{p.name}"
   p.remote_rdoc_dir = File.join(path.gsub(/^#{p.rubyforge_name}\/?/,''), 'rdoc')
@@ -28,5 +29,11 @@ end
 require 'newgem/tasks' # load /tasks/*.rake
 Dir['tasks/**/*.rake'].each { |t| load t }
 
+desc "Test shoulda specs"
+Rake::TestTask.new('shoulda:specs') do |t|
+  t.libs << 'lib'
+  t.pattern = 'test/**/*_test.rb'
+  t.verbose = false
+end
 
-# task :default => [:spec, :features]
+#task :default => ['shoulda:specs']
